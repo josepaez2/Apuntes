@@ -84,7 +84,7 @@ rails db:migrate:reset # DROP + MIGRATE
 rails server -b $IP -p $PORT
 
 
-# COMENTAR
+# COMENTAR COMMENT
 =begin
   Esto está comentado
 =end
@@ -95,6 +95,8 @@ Prioridad de Operadores en Ruby
 **          # Exponentiation
 % / *       # Modulus, Division, Multiplication
 + -        /# Addition and Subtraction
+# By the way different is
+!=          # Different     
 
 saber qué me llega
 def ask(question, kind="string")
@@ -108,9 +110,9 @@ end
 puts " "  #salto de línea
 print " " #(agrega una pausa y espera un enter)
 
-# Invert
-str.invert invertir el orden del string
-array.invert invertir el orden del array
+# Invertir
+str.reverse invertir el orden del string
+arr.reverse invertir el orden del array
 hash.invert hash a values y values a hash
 
 # Truthy & Falsy
@@ -451,6 +453,29 @@ raise_to_power = power_function.curry.(base)#_________________________
 
 power = gets.to_i
 puts raise_to_power.(power)
+
+# ---------- Lazy Evaluation ----------
+
+# Lazy evaluation is an evaluation strategy that delays the assessment of an expression until its value is needed.
+
+# Ruby  introduced a lazy enumeration feature. Lazy evaluation increases performance by avoiding needless calculations, and it has the ability to create potentially infinite data structures.
+
+# Example:
+
+power_array = -> (power, array_size) do 
+    1.upto(Float::INFINITY).lazy.map { |x| x**power }.first(array_size) 
+end
+
+puts power_array.(2 , 4)    #[1, 4, 9, 16]
+puts power_array.(2 , 10)   #[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+puts power_array.(3, 5)     #[1, 8, 27, 64, 125]
+# Example palindromic prime:
+# Your task is to print an array of the first 
+# palindromic prime numbers. Ex: [2,3,5,7,11,101,131,151,181,191]
+
+require 'prime'
+p Prime.each.lazy.select{|x| x.to_s == x.to_s.reverse}.first(gets.to_i)
+
 #-------------------------------------------
 #          BLOQUES PARCIALES
 #-------------------------------------------
@@ -736,6 +761,35 @@ ice_cream_carrots = array.drop(2)
 # The first argument is the index in the array, second argument is the number of items:
 
 first_three_items = array.slice(0, 3)
+
+#### 2D Array - DS / HOURGLASS
+
+arr = [[1, 1, 1, 0, 0, 0], [0, 1, 0, 0, 0, 0], [1, 1, 1, 0, 0, 0], [0, 0, 2, 4, 4, 0], [0, 0, 0, 2, 0, 0], [0, 0, 1, 2, 4, 0]]
+arr_sums = []
+(arr.size - 2).times do |y|
+  (arr[0].size - 2).times do |x|
+    a = arr[y][x]
+    b = arr[y][x+1]
+    c = arr[y][x+2]
+    d = arr[y+1][x+1]
+    e = arr[y+2][x]
+    f = arr[y+2][x+1]
+    g = arr[y+2][x+2]
+
+    print "x = ", x, " y = ", y, "\n\n", a, " ", b, " ", c, "\n", "  ", d, "\n", e, " ", f, " ", g, "\n\n", ""
+
+    # print "x = ", x, " y = ", y, "\n\n"
+    # print a, " ", b, " ", c, "\n"
+    # print "  ", d, "\n"
+    # print e, " ", f, " ", g, "\n\n"
+    # puts ""
+
+    arr_sums << a+b+c+d+e+f+g
+  end
+end
+p arr_sums
+p arr_sums.size
+p arr_sums.max
 
 #-------------------------------------------
 #      		EJERCICIOS DE HASHES
@@ -1422,3 +1476,41 @@ end
 # -------------------------------------------
     puts 'You have succesfully completed the challenge!'
     exit
+# -------------------------------------------
+#             BIG O
+# -------------------------------------------
+1. Different steps get added
+# loop takes O(a) then loop takes O(b) => O(a+b)
+2. Drop constants
+O(2n) => O(n)
+3. Different inputs=> differente variables
+# loop takes O(b) is inside loop takes O(a) then => O(a*b) NOT O(n**2)
+
+4. Drop non-dominant terms
+# loop takes O(n) then loop takes O(n**2) then => O(n**2) NOT O(n+n**2)
+
+# -------------------------------------------
+#             SOLVING PROBLEMS
+# -------------------------------------------
+
+ver solv_problems.rb 
+
+# -------------------------------------------
+#             ALGORITH STRATEGIES
+# -------------------------------------------
+
+ver optimization.rb 
+
+# -------------------------------------------
+#             RECIBIR
+# -------------------------------------------
+
+# Matrices
+# Para matriz de 6X6 pero es bastant6e flexible
+
+arr = Array.new(6)
+for arr_i in (0..6-1)
+    arr_t = gets.strip
+    arr[arr_i] = arr_t.split(' ').map(&:to_i)
+end
+p arr

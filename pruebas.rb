@@ -435,27 +435,120 @@
 # puts prime?(5)
 # puts prime?(8)
 
+# Lazy evaluation is an evaluation strategy that delays
+# the assessment of an expression until its value is needed.
+
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+
+# jose_array = -> (n) do 
+#     1.upto(Float::INFINITY).lazy.map { |x| is_prime(x.to_s ==x.to_s.reverse ? x : "Pato") }.first(n) 
+# end
+
+# # n = gets.to_i
+# p jose_array.(4)    #[1, 4, 9, 16]
+# p jose_array.(7)   #[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+# p jose_array.(6)     #[1, 8, 27, 64, 125]
+
+# require 'prime'
+# p Prime.each.lazy.select{|x| x.to_s == x.to_s.reverse}.first(gets.to_i)
+
+# arr = Array.new(6)
+# for arr_i in (0..6-1)
+#     arr_t = gets.strip
+#     arr[arr_i] = arr_t.split(' ').map(&:to_i)
+# end
+# p arr
+
+# 2D Array - DS / HOURGLASS
+
+# arr = [[1, 1, 1, 0, 0, 0], [0, 1, 0, 0, 0, 0], [1, 1, 1, 0, 0, 0], [0, 0, 2, 4, 4, 0], [0, 0, 0, 2, 0, 0], [0, 0, 1, 2, 4, 0]]
+# arr_sums = []
+# (arr.size - 2).times do |y|
+# 	(arr[0].size - 2).times do |x|
+# 		a = arr[y][x]
+# 		b = arr[y][x+1]
+# 		c = arr[y][x+2]
+# 		d = arr[y+1][x+1]
+# 		e = arr[y+2][x]
+# 		f = arr[y+2][x+1]
+# 		g = arr[y+2][x+2]
+
+# 		print "x = ", x, " y = ", y, "\n\n", a, " ", b, " ", c, "\n", "  ", d, "\n", e, " ", f, " ", g, "\n\n", ""
+
+# 		# print "x = ", x, " y = ", y, "\n\n"
+# 		# print a, " ", b, " ", c, "\n"
+# 		# print "  ", d, "\n"
+# 		# print e, " ", f, " ", g, "\n\n"
+# 		# puts ""
+
+# 		arr_sums << a+b+c+d+e+f+g
+# 	end
+# end
+# p arr_sums
+# p arr_sums.size
+# p arr_sums.max
 
 
 
+# arr = gets.strip.split(' ').map(&:to_i)
+# n = arr[0]
+# arr_size = arr[1]
+# lastAnswer = 0
 
+# s = []
+# (n-1).times do |x|
+# s[x] = []
+# end
 
+# seqList = Array.new(3)
+# for arr_i in (0..arr_size-1)
+#     arr_t = gets.strip
+#     seqList[arr_i] = arr_t.split(' ').map(&:to_i)
+# end
 
+# seqList.each do |line|
+# 	num = line[0]
+# 		x = line[1]
+# 		y = line[2]
+# 		index_ =  (x^lastAnswer) % n
+# 	if num == 1
+# 	# 1. Query 1 x y
+# 		# 	1. Find the sequence, seq, at index(blah)
+# 		# 	2. Append integer y to sequence seq
+# 		s[index_] ||= []
+# 		s[index_].push(y)
 
+# 	end
+# 	if num == 2
+# 		lastAnswer = s[index_][y % s[index_].size]
+# 			# p "lastAnswer"
+# 			p lastAnswer
+# 	end
+# end
 
+# # puts "------"
+# # puts "s0"
+# # p s[0]
+# # puts "s1"
+# # p s[1]
+# # puts "lastAnswer"
+# # p lastAnswer
+# # puts "------"
+# # p s
 
+def leftRotation(a, d)
+    # Complete this function
+end
 
-
-
-
-
-
-
-
-
-
-
-
+n, d = gets.strip.split(' ')
+n = n.to_i
+d = d.to_i
+a = gets.strip
+a = a.split(' ').map(&:to_i)
+result = leftRotation(a, d)
+p a
+p n, d
+# print result.join(" ")
 
 
 
