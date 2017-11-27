@@ -1,6 +1,9 @@
 Descargar imágenes al lugar adecuado
 curl -o app/assets/images/kitten.jpg -OL cdn.learnenough.com/kitten.jpg
 
+
+    AlWAYS USE TABS FOR EVERYTHING!!!
+
 # Trabes, veces entrar al archivo escribir algo, 
 # luego borrarlo y dar guardar puede quitar el trabé. 
 # Recordar bajar el servidor primero.
@@ -17,6 +20,17 @@ x    =   x   /   2      ->     x     /=   2
 
 # Compact Multiple Assignment
 @user.password = @user.password_confirmation = "a" * 5
+# Swap variables
+	sal = "Hola"
+	desp = "Chao"
+
+	sal,desp = desp,sal
+	p sal # Chao
+	p desp # Hola
+
+# Swap elements in an array
+  #Swap arr[i] and arr[j]
+  ar[i], ar[j] = ar[j], ar[i]
 
 # INSTANCIAS
 # ver bonita una instancia
@@ -648,7 +662,7 @@ puts sum
 
 sum = 0
 puts nums.reduce(0){|sum,num| sum += num}
-arrai.min 
+array.min 
 
 # EJERCICIO MIN Y MAX ARRAY
 array.min
@@ -708,6 +722,7 @@ def secret_code(str)
         sum << alphabet[element]
       end
     end
+
     sum.inject(:+).nil? ? 0 : sum.inject(:+)
 end
 
@@ -1505,7 +1520,7 @@ ver optimization.rb
 #             RECIBIR
 # -------------------------------------------
 
-# Matrices
+# Matrices forma A
 # Para matriz de 6X6 pero es bastant6e flexible
 
 arr = Array.new(6)
@@ -1514,3 +1529,28 @@ for arr_i in (0..6-1)
     arr[arr_i] = arr_t.split(' ').map(&:to_i)
 end
 p arr
+
+# Matrices forma B
+n, m = gets.strip.split(' ')
+n = n.to_i
+m = m.to_i
+for a0 in (0..m-1)
+    a, b, k = gets.strip.split(' ')
+    a = a.to_i
+    b = b.to_i
+    k = k.to_i
+end
+
+# Datos individuales
+n, d = gets.strip.split(' ')
+n = n.to_i
+d = d.to_i
+a = gets.strip
+a = a.split(' ').map(&:to_i)
+result = leftRotation(a, d)
+
+# p a # [1, 2, 3, 4, 5]
+# p n # 5 elements
+# p d # 4 movements
+
+

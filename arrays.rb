@@ -3,7 +3,7 @@ y = [1,3,5,6]
 a = x - y
 p a #=> [2, 2, 4] Difference
 b = x & y
-p b #=> [1, 3, 5, 6] Union
+p b #=> [1, 3, 5, 6] Union (en común)
 c = x | y
 p c #=> [1, 2, 3, 4, 5, 6] Intersection
 

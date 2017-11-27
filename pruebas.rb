@@ -489,6 +489,7 @@
 # p arr_sums.max
 
 
+# DYNAMIC ARRAY
 
 # arr = gets.strip.split(' ').map(&:to_i)
 # n = arr[0]
@@ -536,23 +537,270 @@
 # # puts "------"
 # # p s
 
-def leftRotation(a, d)
-    # Complete this function
+# LEFT ROTATION
+
+# def leftRotation(a, d)
+#     # Complete this function
+# end
+
+# n, d = gets.strip.split(' ')
+# n = n.to_i
+# d = d.to_i
+# a = gets.strip
+# a = a.split(' ').map(&:to_i)
+# result = leftRotation(a, d)
+
+# p a # [1, 2, 3, 4, 5]
+# # p n # 5 elements
+# # p d # 4 movements
+
+# d.times do |x|
+# 	memo = a.shift
+# 	a.push(memo)
+# end
+# p a
+
+# SPARSE ARRAYS
+
+# n = gets.strip.to_i
+# arr = []
+# n.times do 
+# 	arr << gets.strip
+# end
+
+# q = gets.strip.to_i
+# arr_q = []
+# q.times do 
+# 	arr_q << gets.strip
+# end
+# # p n
+# # p arr
+# # p q
+# # p arr_q
+
+# arr_q.each do |x|
+# 	b = arr.count(x)
+# 	p b
+# end
+
+# ARRAY MANIPULATION
+
+# N, M = gets.chomp.split(' ').map(&:to_i)
+# arr = Array.new(N + 1, 0)
+# M.times do
+#     a, b, k = gets.chomp.split(' ').map(&:to_i)
+#     arr[a - 1] += k
+#     arr[b] -= k
+# end
+# memo, max = 0, 0
+# arr.each do |value|
+#     memo += value
+#     max = memo if max < memo
+# end
+# puts max
+
+# BIG SORTING
+
+# n = gets.strip.to_i
+# unsorted = Array.new(n)
+# for unsorted_i in (0..n-1)
+#     unsorted[unsorted_i] = gets.strip.to_i
+# end
+# p unsorted.sort
+
+# Intro to Tutorial Challenges
+
+# arr = []
+# 3.times do
+# arr << gets.strip.split(' ').map(&:to_i)
+# end
+# v = arr[0][0]
+# n = arr[1][0]
+# array = arr[2]
+
+# # p v
+# # p n
+# # p array
+# p array.index(v)
+
+# INSERTION SORT - PART 1
+
+# def  insertionSort( ar) 
+# 	size = ar.size
+# 	value = ar[-1]
+# 	size.times do |x|
+# 		if (x+1 == size) && (ar.min > value)
+# 			ar[0] = value
+# 			print ar.join(' ') + "\n"
+#       exit
+# 		elsif ar[size-1-1-x] > value
+# 			ar[size-1-x] = ar[size-1-1-x]
+# 			print ar.join(' ') + "\n"
+# 		elsif ar[size-1-1-x] < value
+# 			ar[size-1-x] = value
+# 			print ar.join(' ') + "\n"
+#       exit
+# 		end
+# 	end
+
+# end
+
+# count = gets.to_i
+# ar = gets.strip.split.map {|i| i.to_i}
+
+# insertionSort( ar )
+
+# INSERTION SORT - PART 2
+
+# def  insertionSort( ar) 
+# 	# size = ar.size
+# 	# size.times do |x|
+# 	# if ar[0] <	
+# 	# end 
+
+# 	size = ar.size
+# 	value = ar[1]
+# 	puts "--------------------------"
+# 	puts "ordenando de menor a mayor"
+# 	puts "--------------------------"
+# 	(size-1).times do |x|
+# 		while () do 
+# 		# if (x+1 == size) && (ar.max < value)
+# 		# 	ar[-1] = value
+# 			# print ar.join(' ') + "\n"
+#       # exit
+#       puts "is #{ar[x+1]} smaller than #{value}?"
+# 		if ar[x+1] < value
+# 	puts "posición de #{ar[x+1]}"
+# 			p position1 = ar.index(ar[x+1])
+# 	puts "posición de #{value}"
+# 			p positionv = ar.index(value)
+# 			memo = ar[x+1]
+# 			ar[x+1] = value
+# 			ar[ar.index(value)] = memo
+# 			# print ar.join(' ') + "\n"
+# 		# elsif ar[size-1-1-x] > value
+# 		# 	ar[size-1-x] = value
+# 			# print ar.join(' ') + "\n"
+#       # exit
+#       puts "ok, change"
+# 		end
+# 			print ar.join(' ') + "\n"
+# 			puts "---------------"
+# 	end
+
+# end
+
+# cnt = gets.to_i
+# ar = gets.strip.split(" ").map! {|i| i.to_i}
+# insertionSort(ar)
+# S = [1,4,54,65,676,878,899,999,6,4,44,55,622,111,222,5445,7,8,9,55,444,666,333]
+
+# p S
+# S.shuffle!
+# p S
+
+# sal = "Hola"
+# desp = "Chao"
+
+# sal,desp = desp,sal
+# p sal
+# p desp
+
+
+# def partition(ar) 
+#   lo = 0
+#   hi = ar.size - 1
+#   i = lo
+#   j = hi
+#   pivot = ar[lo]
+#   # minors = []
+#   # greaters = []
+#   while (true)
+#     #Loop to increment i
+#     while (ar[i]<pivot)
+#     	# minors << ar[i]
+#     	i+=1
+#       break if (i == hi)
+#     end
+#     #Loop to increment j
+#     while (ar[j]>pivot)
+#     	# greaters << ar[j]
+#     	j-=1
+#         break if (j == lo)
+#     end
+#     # break the loop if pointers cross  
+#       break if (i >= j)
+#     #Swap arr[i] and arr[j]
+#     ar[i], ar[j] = ar[j], ar[i]
+#     # p ar
+#   	end
+#   # ---------usels-----------------
+#   #                                Swap arr[lo] with arr[j]
+#   #                                ar[lo], ar[j] = ar[j], ar[lo]
+#   #                                p ar
+#   # ---------usels-----------------
+#   # p ar
+# 	print ar.join(' ') + "\n"
+#   # p minors
+#   # p greaters
+
+#   return j
+# end
+# ar = [12,3,1,2,4,70,89,3,3]
+# # p ar
+# # puts " - - Start - - "
+# partition(ar)
+# # puts " - - Finish - - "
+
+# COUNTING SORT 1
+
+# def counting_sort(ar)
+#   maxi = ar.max + 1
+#   count = Array.new(maxi, 0)
+
+# 	ar.each do |number|
+# 	   	count[number] += 1
+# 	end
+
+# 	p count
+
+# end
+
+# size = gets.chomp
+# ar = gets.chomp.split(" ").map{|x|x.to_i};
+# counting_sort(ar);
+
+# COUNTING SORT 2
+
+def counting_sort1(ar)
+  maxi = ar.max + 1
+  count = Array.new(maxi, 0)
+	ar.each do |number|
+	  	count[number] += 1
+	end
+	# print count.join(' ') + "\n"
+	return count
 end
 
-n, d = gets.strip.split(' ')
-n = n.to_i
-d = d.to_i
-a = gets.strip
-a = a.split(' ').map(&:to_i)
-result = leftRotation(a, d)
-p a
-p n, d
-# print result.join(" ")
+def counting_sort2(count)
+
+	sor_arr = (0..99).to_a
+	array_q = []
+	(0...sor_arr.count).inject(0) do |r, i|
+	# r + sor_arr[i]*count[i]
+	array_q << [sor_arr[i].to_s]*count[i]
+	end
+
+	print array_q.flatten.join(' ') + "\n"
+
+end
 
 
+size = gets.chomp
+ar = STDIN.gets.chomp.split(" ").map{|x|x.to_i};
 
-
+counting_sort2(counting_sort1(ar))
 
 
 
