@@ -773,35 +773,329 @@
 
 # COUNTING SORT 2
 
-def counting_sort1(ar)
-  maxi = ar.max + 1
-  count = Array.new(maxi, 0)
-	ar.each do |number|
-	  	count[number] += 1
-	end
-	# print count.join(' ') + "\n"
-	return count
-end
+# def counting_sort1(ar)
+#   maxi = ar.max + 1
+#   count = Array.new(maxi, 0)
+# 	ar.each do |number|
+# 	  	count[number] += 1
+# 	end
+# 	# print count.join(' ') + "\n"
+# 	return count
+# end
 
-def counting_sort2(count)
+# def counting_sort2(count)
 
-	sor_arr = (0..99).to_a
-	array_q = []
-	(0...sor_arr.count).inject(0) do |r, i|
-	# r + sor_arr[i]*count[i]
-	array_q << [sor_arr[i].to_s]*count[i]
-	end
+# 	sor_arr = (0..99).to_a
+# 	array_q = []
+# 	(0...sor_arr.count).inject(0) do |r, i|
+# 	# r + sor_arr[i]*count[i]
+# 	array_q << [sor_arr[i].to_s]*count[i]
+# 	end
 
-	print array_q.flatten.join(' ') + "\n"
+# 	print array_q.flatten.join(' ') + "\n"
 
-end
-
-
-size = gets.chomp
-ar = STDIN.gets.chomp.split(" ").map{|x|x.to_i};
-
-counting_sort2(counting_sort1(ar))
+# end
 
 
+# size = gets.chomp
+# ar = STDIN.gets.chomp.split(" ").map{|x|x.to_i};
+
+# counting_sort2(counting_sort1(ar))
+
+# THE FULL COUNTING Bad Performance 
+
+# size = gets.chomp.to_i
+# sort_arr = []
+# final_arr = []
+# arr = Array.new(size)
+# for arr_i in (0..size-1)
+#     arr[arr_i] = gets.strip.split(' ')
+#     arr[arr_i][0] = arr[arr_i][0].to_i
+
+#     sort_arr << arr[arr_i][0]
+		
+# 		if (arr_i >= 0) && (arr_i < (size)/2)
+# 			arr[arr_i][1] = "-"
+# 		end
+# end
+
+# c = sort_arr.sort.uniq
+# # p c
+# c.each do |num|
+# 	arr.each do |pair|
+# 		if pair[0] == num
+# 			final_arr << pair[1]
+# 		end
+# 	end
+# end
+# 		print final_arr.join(' ') + "\n"
+
+# # THE FULL COUNTING Pre-final Explicado
+
+# size = gets.chomp.to_i
+      
+
+# arr = [[], [], [], [], [], [], []]
+# # p arr
+# # puts "-----------------------------"
+
+# for arr_i in (0..size-1)
+# 		# Recibir todo como strings
+# 		var = gets.strip.split(' ')
+# 		# puts "Printing new item"
+# 		# p var #=> ["0", "ab"]
+# 		num = var[0].to_i #=> 0
+# 		lett = var[1] #=> "ab"
+# 		# Guardar strings en posiciones específicas
+#    # puts "Printing array in mention arr[#{num}] (should be empty at first)"
+#      arr[num]
+#    # puts "Printing size of array in mention"
+#      arr_size = arr[num].size
+
+#     # Cambiar por dashes
+# 		if (arr_i >= 0) && (arr_i < (size)/2)
+# 			lett = "-"
+# 		end
+
+#    # puts "Asigning..."
+#     arr[num][arr_size] = lett #=> arr[0].push("ab")
+
+# 	 # puts "Printing final array"
+# 	 # p arr
+#   #  puts "-----------------------------"
+# end
+
+# # puts "END"
+# print arr.flatten.join(' ') + "\n"
+
+# THE FULL COUNTING Compact Better Performance
+
+# size = gets.chomp.to_i
+      
+# arr = []
+# for arr_i in (0..size-1)
+# 		# Recibir 
+# 		var = gets.strip.split(' ')
+# 		num = var[0].to_i #=> 0
+# 		lett = var[1] #=> "ab"
+# 		if arr[num].nil?
+# 			arr[num] = []
+# 		end
+#      arr_size = arr[num].size
+
+#     # Cambiar por dashes
+# 		if (arr_i >= 0) && (arr_i < (size)/2)
+# 			lett = "-"
+# 		end
+#     # Asignar
+#     arr[num][arr_size] = lett #=> arr[0].push("ab")
+
+# end
+# # p arr
+# print arr.flatten.join(' ') + "\n"
+
+# CLOSEST NUMBERS
+
+# size = gets.chomp.to_i
+# arr = gets.chomp.split(" ").map{|x|x.to_i};
+# arr.sort!
+
+# diffs = []
+# for arr_i in (0..size-2)
+# 	diffs << arr[arr_i+1] - arr[arr_i]
+# end
+
+# min_ = diffs.min
+
+# for arr_i in (0..size-2)
+# 	if min_ ==  arr[arr_i+1] - arr[arr_i]
+# 		print arr[arr_i]," ", arr[arr_i+1]," "
+# 	end
+# end
+
+# FIND THE MEDIAN
+
+# size = gets.chomp.to_i
+# arr = gets.chomp.split(" ").map{|x|x.to_i};
+# arr.sort!
+# p arr[size/2]
+
+# INSERTION SORT ADVANCED ANALYSIS
+
+# require "matrix"
+
+# FIRST APPROACH
+
+# num_query = gets.chomp.to_i
+# num_query.times do
+# 	size = gets.chomp.to_i
+# 	arr = gets.chomp.split(" ").map{|x|x.to_i};
+# 	arr_sort = arr.sort
+# 	p a = Matrix[arr].row(0)
+# 	p b = Matrix[arr_sort].row(0)
+# 	p c = a - b
+# 	puts c.inject {|sum, n| sum + n.abs } 
+# end
 
 
+
+# num_query = gets.chomp.to_i
+# acum = 0
+# num_query.times do
+# 	size = gets.chomp.to_i
+# 	arr = gets.chomp.split(" ").map{|x|x.to_i};
+# 	arr_sort = arr.sort
+# 	p a = arr
+# 	# p arr.count
+# 	p b = arr_sort
+# 	# p c = a - b
+# 	# puts c.inject {|sum, n| sum + n.abs } 
+# 	a.each do |num|
+# 		puts "Number -> #{num}"
+# 		puts num
+# 		puts "Initial position -> #{a.index(num)}"
+# 		puts "Position in sorted -> #{b.index(num)}"
+# 		p diff = a.index(num) - b.index(num)
+# 		p acum += diff.abs
+# 		puts "---------------"
+# 	end
+#  		puts "--------------------------------FINAL #{acum/2}"
+# end
+
+# SECOND APPROACH
+
+# INSERTION SORT - PART 2
+
+# def  insertionSort( ar) 
+# 	# size = ar.size
+# 	# size.times do |x|
+# 	# if ar[0] <	
+# 	# end 
+
+# 	size = ar.size
+# 	value = ar[0]
+# 	puts "--------------------------"
+# 	puts "ordenando de menor a mayor"
+# 	puts "--------------------------"
+# 	# (size-1).times do |x|
+# 		# volver a empezar
+# 		# revisar que todo el array esté en orden si no lo está hágale
+# 		# puts "TEST"
+# 		#  p (ar.sort == ar.sort)
+# 		x = 0
+# 		while !(ar == ar.sort) do 
+# 			# if (x+1 == size) && (ar.max < value)
+# 			# 	ar[-1] = value
+# 			# print ar.join(' ') + "\n"
+#       # exit
+#       puts "is #{ar[x+1]} smaller than #{value}?"
+# 			if ar[x+1] < value
+# 				puts "yes, its smaller"
+# 				puts "posición de #{ar[x+1]}"
+# 				p position1 = ar.index(ar[x+1])
+# 				puts "posición de #{value}"
+# 				p positionv = ar.index(value)
+# 				memo = ar[x+1]
+# 				ar[x+1] = value
+# 				ar[ar.index(value)] = memo
+# 				# print ar.join(' ') + "\n"
+# 				# elsif ar[size-1-1-x] > value
+# 				# 	ar[size-1-x] = value
+# 				# print ar.join(' ') + "\n"
+# 	      # exit
+# 	      puts "ok, change"
+# 			end
+# 			print ar.join(' ') + "\n"
+# 			puts "---------------"
+# 			x+=1
+# 			if x > size
+# 				exit
+# 			end
+# 		# end
+# 	end
+# end
+# cnt = gets.to_i
+# ar = gets.strip.split(" ").map! {|i| i.to_i}
+# insertionSort(ar)
+# # S = [1,4,54,65,676,878,899,999,6,4,44,55,622,111,222,5445,7,8,9,55,444,666,333]
+
+# # Opción 1
+# [2, 1, 3, 1, 2]
+# [1, 1, 2, 2, 3]
+# # el 2
+# [1, 1, 1, 0, 0]
+# # el 1
+# [1, 1, 0, 0, 0]
+# # el 3
+# [0, 0, 1, 1, 1]
+# # el 1
+# [0, 1, 1, 1, 0]
+# # el 2
+# [0, 0, 0, 1, 1]
+
+# # Opción 2
+# [2, 1, 3, 1, 2]
+# [1, 1, 2, 2, 3]
+# # el 2
+# [1, 1, 0, 0, 0]
+# # el 1
+# [0, 0, 0, 0, 0]
+# # el 3
+# [0, 0, 1, 1, 0]
+# # el 1
+# [0, 1, 1, 1, 0]
+# # el 2
+# [0, 0, 0, 0, 1]
+
+# # Opción 3
+# [2, 1, 3, 1, 2]
+# [1, 1, 2, 2, 3]
+# # el 2
+# [0, 1, 0, 0, 0]
+# # el 1
+# [0, 0, 0, 0, 0]
+# # el 3
+# [0, 0, 0, 1, 0]
+# # el 1
+# [0, 1, 1, 0, 0]
+# # el 2
+# [0, 0, 0, 0, 0]
+
+
+# # PROBAR
+
+# [1, 4, 9, 7, 6, 4, 8, 9, 1, 1, 9, 1, 6, 2]
+# [1, 1, 1, 1, 2, 4, 4, 6, 6, 7, 8, 9, 9, 9]
+
+# # el 1
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+# # el 4
+# [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0] 3
+# # el 9
+# [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0] 8
+# # el 7
+# [0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0] 5
+# # el 6
+# [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0] 2
+# # el 4 (second)
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] 0
+# # el 8
+# [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0] 3
+# # el 9 (second)
+# [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0] 4
+# # el 1 (second)
+# [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0] 4
+# # el 1 (third)
+# [0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0] 6
+# # el 9 (third)
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0] 2
+# # el 1 (fourth)
+# [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0] 9
+# # el 6 (second)
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0] 3
+# # el 2
+# [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0] 8 57 ok
+
+# 1
+# 14
+# 1 4 9 7 6 4 8 9 1 1 9 1 6 2

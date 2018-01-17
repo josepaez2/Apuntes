@@ -1,6 +1,47 @@
 Descargar imágenes al lugar adecuado
 curl -o app/assets/images/kitten.jpg -OL cdn.learnenough.com/kitten.jpg
 
+# COMMANDS for Command Line
+
+Description                     Command                    Example
+list contents                       ls                     $ ls -l
+make directory                      mkdir <dirname>        $ mkdir environment
+change directory                    cd <dirname>           $ cd environment/
+cd one directory up                                        $ cd ..
+cd to home directory                                       $ cd ~ or just $ cd
+cd to path incl. home dir                                  $ cd ~/environment/
+move file (rename)                  mv <source> <target>   $ mv foo bar
+copy file                           cp <source> <target>   $ cp foo bar
+remove file                         rm <file>              $ rm foo
+remove empty directory              rmdir <directory>      $ rmdir environment/
+remove nonempty directory           rm -rf <directory>     $ rm -rf tmp/
+concatenate & display file contents cat <file>             $ cat ~/.ssh/id_rsa.pub
+
+# Rails Projects
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
 
     AlWAYS USE TABS FOR EVERYTHING!!!
 
@@ -86,14 +127,18 @@ rails console --sandbox
 rails s
 rails d
 bundle
+bundle u (bundle update which makes sure only the selected gems are installed)
+# example: you did bundle install and later did bundle install --without production
+# clearly production is installed, but if you do an update it does the last one)
 
 rails db:drop
 rails db:create # aunque creo que ese comando ya no es necesario
-rails db:migrate
+rails db:migrate # migra
 rails db:seed
 rails db:setup # create, schema:load
 rails db:reset # drop + setup
-rails db:rollback
+rails db:rollback # deshace la última migración
+rails db:migrate VERSION=0 # vuelve todo a la migración inicial
 rails db:migrate:reset # DROP + MIGRATE
 rails server -b $IP -p $PORT
 
@@ -150,6 +195,9 @@ new_string = old_string.case.reverse > voltear un string
 #-------------------------------------------
 
 Las mayúsculas son para constantes no para variables!
+
+>> 'Newlines (\n) and tabs (\t) both use the backslash character \.'
+=> "Newlines (\\n) and tabs (\\t) both use the backslash character \\."
 
 str = "hello James!"
 str.include?("a") #=> true , busca en strings
@@ -233,7 +281,7 @@ p "hora de irse".palindrome? # => false
 #-------------------------------------------
 
 # BODYGUARD
-rails c 
+
 >> def string_message(str = '')
 >>   return "It's an empty string!" if str.empty?
 >>   return "The string is nonempty."
@@ -297,10 +345,17 @@ end
 # -------------------------------------------
 #                 BLOCKS
 # -------------------------------------------
+# One line BLOCKS and  “symbol-to-proc”
+
+>> %w[A B C].map { |char| char.downcase }
+=> ["a", "b", "c"]
+>> %w[A B C].map(&:downcase)
+=> ["a", "b", "c"]
+
 
 # ----------FACTORIAL, BLOCKS and YIELD -----------
 
-n = gets.to_i
+cz
 
 def factorial
     yield
