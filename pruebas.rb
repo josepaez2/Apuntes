@@ -1099,3 +1099,6 @@
 # 1
 # 14
 # 1 4 9 7 6 4 8 9 1 1 9 1 6 2
+word = ["o", "l", "d"]
+p word.map { |i| i.upcase }.join
+

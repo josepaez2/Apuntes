@@ -194,6 +194,9 @@ new_string = old_string.case.reverse > voltear un string
 #                 STRINGS
 #-------------------------------------------
 
+# random_subdomain
+('a'..'z').to_a.shuffle[0..7].join
+
 Las mayúsculas son para constantes no para variables!
 
 >> 'Newlines (\n) and tabs (\t) both use the backslash character \.'
