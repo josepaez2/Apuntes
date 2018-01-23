@@ -1,6 +1,67 @@
 Descargar imágenes al lugar adecuado
 curl -o app/assets/images/kitten.jpg -OL cdn.learnenough.com/kitten.jpg
 
+
+# Edit Bash Profile
+# subl ~/.bash_profile
+
+# GREP (grepping)
+
+  # Listing 16: Finding the occurrences of user in rails routes
+  $ grep -i user routes.rb | wc
+      9      72     914
+
+  # Ans 9, findings of the word user in routes.rb with -i(case-insensitive)
+
+# PUMA (vs WEBrick Puma has higher performance)
+
+  # The configuration file for the production webserver: puma.rb
+  workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+  threads_count = Integer(ENV['RAILS_MAX_THREADS'] || 5)
+  threads threads_count, threads_count
+
+  preload_app!
+
+  rackup DefaultRackup
+  port ENV['PORT'] || 3000
+  environment ENV['RACK_ENV'] || 'development'
+
+  on_worker_boot do
+    # Worker specific setup for Rails 4.1+
+    # See: https://devcenter.heroku.com/articles/
+    # deploying-rails-applications-with-the-puma-web-server#on-worker-boot
+    ActiveRecord::Base.establish_connection
+  end
+
+  # Defining a Procfile for Puma.
+  # Create file Procfile in root of app and fill file with
+    web: bundle exec puma -C config/puma.rb
+
+# SECURITY
+
+CSRF Cross-site Request Forgery
+
+# Cross-site request forgery, also known as one-click attack or session
+# riding and abbreviated as CSRF (sometimes pronounced sea-surf[1]) or 
+# XSRF, is a type of malicious exploit of a website where unauthorized 
+# commands are transmitted from a user that the web application trusts.[2] 
+# There are many ways in which a malicious website can transmit such 
+# commands; specially-crafted image tags, hidden forms, and JavaScript 
+# XMLHttpRequests, for example, can all work without the user's interaction 
+# or even knowledge. Unlike cross-site scripting (XSS), which exploits the
+#  trust a user has for a particular site, CSRF exploits the trust that a
+#  site has in a user's browser.
+
+
+SSL Secure Sockets Layer
+
+# When submitting the signup form developed in this chapter, the name, email
+# address, and password get sent over the network, and hence are vulnerable
+# to being intercepted by malicious users.
+
+# Note the presence of https:// and a lock icon in the address
+# bar of Figure 7.25, which indicate that SSL is working.
+
 # COMMANDS for Command Line
 
 Description                     Command                    Example
@@ -62,12 +123,12 @@ x    =   x   /   2      ->     x     /=   2
 # Compact Multiple Assignment
 @user.password = @user.password_confirmation = "a" * 5
 # Swap variables
-	sal = "Hola"
-	desp = "Chao"
+  sal = "Hola"
+  desp = "Chao"
 
-	sal,desp = desp,sal
-	p sal # Chao
-	p desp # Hola
+  sal,desp = desp,sal
+  p sal # Chao
+  p desp # Hola
 
 # Swap elements in an array
   #Swap arr[i] and arr[j]
@@ -76,7 +137,7 @@ x    =   x   /   2      ->     x     /=   2
 # INSTANCIAS
 # ver bonita una instancia
 puts user.attributes.to_yaml?
-y user.attributes.
+puts y user.attributes
 
 # ASSETS
 app/assets #assets specific to the present application
@@ -102,6 +163,7 @@ cmd+p       # Buscar archivo
 cmd+t #ir a una pestaña específica
 cmd+p+enter #toggle entre archivos
 cmd+shif+p  # Command Palette
+cmd+shift+p + reindent # Sublime reindents html !!
 cmd+d #selecciona los snippets parecidos, selecionados modificarlos
 cmd+shift+v # Pegar sin estilos
 cmd+k+u  #a mayúsculas
@@ -1332,6 +1394,10 @@ validates ver archivo validation.rb de esta misma carpeta
 
 # PERO POR SI ACASO
 
+# <% @user.errors.full_messages.each do |msg| %>
+# <li><%= msg %></li>
+# <% end %>
+
 user = User.new(name: "Michael Hartl", email: "mhartl@example.com")
 user = User.create(name:"aaa")
 user.valid?
@@ -1340,6 +1406,8 @@ user.errors
 user.errors.count
 user.errors.messages
 user.errors.full_messages
+user.errors.empty?
+user.errors.any?
 
 User.find(1)
 User.find_by(name:"Michael Hartl")
@@ -1430,21 +1498,116 @@ rails server RAILS_ENV=production
 #         HELPERS
 #-------------------------------------------
 
-# Pluralize
+# Session method
 
-The other new idea is the pluralize text helper,
-which is available in the console via the helper
-object:
+  # We can treat session as if it were a hash, and assign to it as follows:
+    session[:user_id] = user.id
+  # This places a temporary cookie on the user’s browser containing an encrypted
+  # version of the user’s id, which allows us to retrieve the id on subsequent pages
+  # using session[:user_id]. In contrast to the persistent cookie created by the
+  # cookies method (Section 9.1), the temporary cookie created by the session
+  # method expires immediately when the browser is closed.
 
->> helper.pluralize(1, "error")
-=> "1 error"
->> helper.pluralize(5, "error")
-=> "5 errors"
->> helper.pluralize(2, "woman"),
-=> "2 women"
->> helper.pluralize(3, "erratum")
-=> "3 errata"
+ # Simulating session in the console.
 
+    >> session = {}
+     => {}
+    >> session[:user_id] = nil
+     => nil
+    >> @current_user ||= User.find_by(id: session[:user_id])
+     => nil
+     >> session[:user_id]= User.first.id
+      => 1
+     >> @current_user ||= User.find_by(id: session[:user_id])
+    => #<User id: 1, name: "Rails Tutorial", email: "example@railstutorial.org", created_at: "2018-01-22 22:59:07", updated_at: "2018-01-22 22:59:07", password_digest: "$2a$10$W4RgUXwgCyWHUusM/TSAcukHdSGCOnPct8kxb6VLl3E...">
+
+# Pluralize method
+
+  # The other new idea is the pluralize text helper,
+  # which is available in the console via the helper
+  # object:
+
+  >> helper.pluralize(1, "error")
+  => "1 error"
+  >> helper.pluralize(5, "error")
+  => "5 errors"
+  >> helper.pluralize(2, "woman"),
+  => "2 women"
+  >> helper.pluralize(3, "erratum")
+  => "3 errata"
+
+# Other Helpers
+
+  app/helpers/sessions_helper.rb
+
+  module SessionsHelper
+    # Logs in the given user.
+    def log_in(user)
+      session[:user_id] = user.id
+    end
+    # Returns the current logged-in user (if any).
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id])
+    end
+    # Returns true if the user is logged in, false otherwise.
+    def logged_in?
+      !current_user.nil?
+    end
+    # Logs out the current user.
+    def log_out
+      session.delete(:user_id)
+      @current_user = nil
+    end
+  end
+
+# 1) The log_in function [ session(temporary cookies) vs permanent cookies ]
+
+  # Because we’ll want to use the same login technique in a couple of different
+  # places, we’ll define a method called log_in in the Sessions helper, as shown
+  # in Listing 8.14.
+
+  module SessionsHelper
+    # Logs in the given user.
+    def log_in(user)
+      session[:user_id] = user.id
+    end
+  end
+
+  # Because temporary cookies created using the session method are automatically
+  # encrypted, the code in Listing 8.14 is secure, and there is no way for
+  # an attacker to use the session information to log in as the user. This
+  # applies only to temporary sessions initiated with the session method, 
+  # though, and is not the case for persistent sessions created using the 
+  # cookies method. Permanent cookies are vulnerable to a session hijacking
+  # attack, so in Chapter 9 we’ll have to be much more careful about the
+  # information we place on the user’s browser.
+
+# 2) The current_user method
+
+  # Having placed the user’s id securely in the temporary session, we are now
+  # in a position to retrieve it on subsequent pages, which we’ll do by
+  # defining a current_user method to find the user in the database 
+  # corresponding to the session id.
+
+  # uses for the method:
+  # <%= current_user.name %>
+  # redirect_to current_user
+
+      # def current_user
+      #   User.find_by(id: session[:user_id])
+      # end
+
+  # This would work fine, but it would hit the database multiple times
+  # if, e.g., current_user appeared multiple times on a page. Instead,
+  # we’ll follow a common Ruby convention by storing the result of
+  # User.find_by in an instance variable, which hits the database the
+  # first time but returns the instance variable immediately on subsequent
+  # invocations, and since it can be nil a lot you should definately take
+  # that into account and assign it a value when it is in fact nil
+  
+  def current_user
+    @current_user ||= User.find_by(id: session[:user_id])
+  end
 
 # -------------------------------------------
 #         SCAFFOLD
@@ -1537,6 +1700,20 @@ end
       render json: @product.errors.full_messages, :status => 422
     end
   end
+
+  # PARAMS USE (suele estar nested), example:
+   { session: { password: "foobar", email: "user@example.com" } }
+    params[:session] # { password: "foobar", email: "user@example.com" }
+    params[:session][:email] # "user@example.com"
+    params[:session][:password] # "foobar"
+
+  @user = User.new(params[:user])
+
+  is mostly equivalent to
+
+  @user = User.new(name: "Foo Bar", email: "foo@invalid",
+  password: "foo", password_confirmation: "bar")
+
 # -------------------------------------------
 #         JSON
 # -------------------------------------------

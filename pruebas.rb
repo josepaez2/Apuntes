@@ -68,7 +68,7 @@
 # end
 # puts "pedrito".shuffle
 
-# str = "hello James!"
+# str = "hello James"
 # p str.include?("aa")
 # ______________________
 
@@ -1099,6 +1099,61 @@
 # 1
 # 14
 # 1 4 9 7 6 4 8 9 1 1 9 1 6 2
-word = ["o", "l", "d"]
-p word.map { |i| i.upcase }.join
+# word = ["o", "l", "d"]
+# p word.map { |i| i.upcase }.join
+
+# INICIAL
+# class String
+#   def palindrome?
+#   	self.delete(' ').downcase.tr("ä", "a").tr("á", "a").tr("à", "a").tr("â", "a").tr("ë", "e").tr("é", "e").tr("è", "e").tr("ê", "e").tr("ï", "i").tr("í", "i").tr("ì", "i").tr("î", "i").tr("ö", "o").tr("ó", "o").tr("ò", "o").tr("ô", "o").tr("ü", "u").tr("ú", "u").tr("ù", "u").tr("û", "u").tr("ñ", "n") == self.delete(' ').downcase.reverse.tr("ä", "a").tr("á", "a").tr("à", "a").tr("â", "a").tr("ë", "e").tr("é", "e").tr("è", "e").tr("ê", "e").tr("ï", "i").tr("í", "i").tr("ì", "i").tr("î", "i").tr("ö", "o").tr("ó", "o").tr("ò", "o").tr("ô", "o").tr("ü", "u").tr("ú", "u").tr("ù", "u").tr("û", "u").tr("ñ", "n")
+#   end
+# end
+# p "ânita lavà la tina".palindrome? # => true
+# p "hora de irse".palindrome? # => false
+
+# Con NUMEROS por LETRAS
+class String
+  def palindrome?
+  	self.delete(' ').downcase.tr("ä", "a").tr("á", "a").tr("à", "a").tr("â", "a").tr("ë", "e").tr("é", "e").tr("è", "e").tr("ê", "e").tr("ï", "i").tr("í", "i").tr("ì", "i").tr("î", "i").tr("ö", "o").tr("ó", "o").tr("ò", "o").tr("ô", "o").tr("ü", "u").tr("ú", "u").tr("ù", "u").tr("û", "u").tr("ñ", "n").tr("0", "o").tr("1", "l").tr("2", "z").tr("3", "e").tr("5", "s").tr("6", "g").tr("7", "j").tr("*", "_").tr("4", "a").tr("_", "") == self.delete(' ').downcase.reverse.tr("ä", "a").tr("á", "a").tr("à", "a").tr("â", "a").tr("ë", "e").tr("é", "e").tr("è", "e").tr("ê", "e").tr("ï", "i").tr("í", "i").tr("ì", "i").tr("î", "i").tr("ö", "o").tr("ó", "o").tr("ò", "o").tr("ô", "o").tr("ü", "u").tr("ú", "u").tr("ù", "u").tr("û", "u").tr("ñ", "n").tr("0", "o").tr("1", "l").tr("2", "z").tr("3", "e").tr("5", "s").tr("6", "g").tr("7", "j").tr("*", "_").tr("4", "a").tr("_", "")
+  end
+end
+
+p "ânita lavà la tina".palindrome? # => true
+p "hora de irse".palindrome? # => false
+
+# .tr("ä", "a").tr("á", "a").tr("à", "a").tr("â", "a").tr("ë", "e").tr("é", "e").tr("è", "e").tr("ê", "e").tr("ï", "i").tr("í", "i").tr("ì", "i").tr("î", "i").tr("ö", "o").tr("ó", "o").tr("ò", "o").tr("ô", "o").tr("ü", "u").tr("ú", "u").tr("ù", "u").tr("û", "u").tr("ñ", "n")
+# .tr("0", "o").tr("1", "l").tr("2", "z").tr("3", "e").tr("5", "s").tr("6", "g").tr("7", "j").tr("*", "_").tr("4", "a").tr("_", "")
+
+# Con gorrito y en mayuscula igual debe decir si es palindrome
+# todo lo que no sea alfanumerico se obvia
+# * es comodín
+# 4 a A 
+# "ä"=>"a"
+# "á"=>"a"
+# "à"=>"a"
+# "â"=>"a"
+# "ë"=>"e"
+# "é"=>"e"
+# "è"=>"e"
+# "ê"=>"e"
+# "ï"=>"i"
+# "í"=>"i"
+# "ì"=>"i"
+# "î"=>"i"
+# "ö"=>"o"
+# "ó"=>"o"
+# "ò"=>"o"
+# "ô"=>"o"
+# "ü"=>"u"
+# "ú"=>"u"
+# "ù"=>"u"
+# "û"=>"u"
+# "Ñ"=>"n"
+# "ñ"=>"n"
+
+
+
+
+
+
 
